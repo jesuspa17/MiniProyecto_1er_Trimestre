@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:id="@+id/imageViewFav"
-                android:src="@mipmap/ic_launcher"
+                android:src="@android:drawable/btn_star_big_on"
                 android:gravity="center"
                 />
         </LinearLayout>
@@ -77,20 +77,20 @@
                 android:text="20º"
                 android:id="@+id/txtTemperatura"
                 android:layout_marginRight="20dp"
-                android:textSize="60dp"
+                android:textSize="50dp"
                 android:gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.33">
+                android:layout_weight="1">
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3">
+                android:layout_weight="0.9">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -98,8 +98,8 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:id="@+id/imageViewMax"
                         android:src="@drawable/ic_action_up" />
 
@@ -119,8 +119,8 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:id="@+id/imageView2"
                         android:src="@drawable/ic_action_down"/>
 
@@ -132,6 +132,28 @@
                         android:id="@+id/txtMinima"
                         android:layout_gravity="center_vertical" />
 
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/imageView4"
+                        android:src="@drawable/ic_action_name" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="68%"
+                        android:id="@+id/txtHumedad"
+                        android:layout_gravity="center_vertical" />
                 </LinearLayout>
 
 
@@ -149,8 +171,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="0.2">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -202,22 +223,12 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.07">
+                android:layout_weight="1">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/imageView4"
-                    android:src="@drawable/ic_action_name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="68%"
-                    android:id="@+id/txtHumedad"
-                    android:layout_gravity="center_vertical" />
             </LinearLayout>
+
+
 
         </LinearLayout>
 

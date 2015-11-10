@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.Toast;
 
 import com.dam.salesianostriana.proyecto.weatherdam.pojo_googleplaces.Predictions;
 import com.dam.salesianostriana.proyecto.weatherdam.pojo_googleplaces.Region;
@@ -67,15 +67,15 @@ public class BuscarInicioActivity extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-//                if(ciudad.getText().toString().isEmpty()){
-//                    Snackbar bar = Snackbar.make(v, "Debe buscar alguna ciudad", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null);
-//                    bar.show();
-//                }else{
+                if(ciudad.getText().toString().isEmpty()){
+                   Snackbar bar = Snackbar.make(v, "Debe buscar alguna ciudad", Snackbar.LENGTH_LONG)
+                           .setAction("Action", null);
+                    bar.show();
+                 }else{
                     Intent i = new Intent(BuscarInicioActivity.this,MainActivity.class);
+                    i.putExtra("titulo",ciudad.getText().toString());
                     startActivity(i);
-               // }
+                }
             }
         });
 
@@ -93,7 +93,7 @@ public class BuscarInicioActivity extends AppCompatActivity{
                 if(params[0] != null) {
 
                     url = new URL(PLACES_API_BASE + TYPE_AUTOCOMPLETE
-                            + OUT_JSON + "?input=" + params[0]
+                            + OUT_JSON + "?input=" + params[0].replace(" ","").trim()
                             + "&types=(cities)&language=es_ES&key=" + API_KEY);
 
                     // url = new URL("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+params[0]+"&types=(cities)&language=es_ES&key=AIzaSyAowGYjVlmA1XJl2EZNvKCVgNF8nPk8uHE");
@@ -120,11 +120,10 @@ public class BuscarInicioActivity extends AppCompatActivity{
             if (predictionses != null) {
                 ciudad.setAdapter(new AutoComplete(BuscarInicioActivity.this,android.R.layout.simple_list_item_1));
                 ciudad.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String str = (String) parent.getItemAtPosition(position);
-                        Toast.makeText(BuscarInicioActivity.this, str, Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 countriesList = predictionses;
