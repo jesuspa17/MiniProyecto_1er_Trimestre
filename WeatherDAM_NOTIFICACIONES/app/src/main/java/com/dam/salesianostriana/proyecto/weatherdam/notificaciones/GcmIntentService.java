@@ -15,6 +15,10 @@ import com.dam.salesianostriana.proyecto.weatherdam.MainActivity;
 import com.dam.salesianostriana.proyecto.weatherdam.R;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +48,22 @@ public class GcmIntentService extends IntentService {
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                 Logger.getLogger("GCM_RECEIVED").log(Level.INFO, extras.toString());
 
-                enviarNotificacion(extras.getString("alerta"));
+
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(extras.getString("alerta"));
+                    JSONArray arr = obj.getJSONArray("weather");
+                    String lloviendo = arr.getJSONObject(0).getString("main");
+
+                    if(lloviendo.equalsIgnoreCase("Rain")){
+                        enviarNotificacion("Esta lloviendo, coge el paraguas antes de salir!");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         }
         GcmBroadcastReceiver.completeWakefulIntent(intent);
